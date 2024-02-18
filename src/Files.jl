@@ -12,10 +12,11 @@ function puzzleparse(filename::String)::Dict{Int64, MyPuzzleRecordModel}
     linecounter = 1;
     
     # main -
-    open(filename, "r") do io
-        for line ∈ eachline(io)
+    open(filename, "r") do io # open a stream to the file
+        for line ∈ eachline(io) # read each line from the stream
             
-            # TODO: do something with this line of text
+           records[linecounter] = build(; record = line);
+           linecounter = linecounter + 1; # update the counter
 
         end
     end
