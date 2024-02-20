@@ -4,8 +4,13 @@
 # ===== PRIVATE METHODS ABOVE HERE =================================================================================== #
 
 # ===== PUBLIC METHODS BELOW HERE =================================================================================== #
-# TODO: Make a build method to construct MyPuzzleRecordModel types
-function build(; record::String = "abc")::MyPuzzleRecordModel
+"""
+    build(; record::String = "") -> MyPuzzleRecordModel
+
+This function is used to build an instance of MyPuzzleRecordModel. It takes one argument, a string used as the record
+data field of MyPuzzleRecordModel. It populates all fields of MyPuzzleRecordModel.
+"""
+function build(; record::String = "")::MyPuzzleRecordModel
     # check: check to see if the parameter is valid
     @assert isempty(record) == false "String cannot be empty"
 

@@ -1,7 +1,6 @@
 """
     MyPuzzleRecordModel
 
-TODO: Add documentation
 Mutable struct with three fields:
     record::String - single encoded line of text
     characters::Array{Char, 1} - the characters of the line of text
