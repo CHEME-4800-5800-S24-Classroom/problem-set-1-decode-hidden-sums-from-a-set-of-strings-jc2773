@@ -42,7 +42,7 @@ If a digit is found, it is added to the numbers array. If a spelled number is fo
 numbers array. The two-digit integer is computed by taking the first and last elements in the numbers array.
 """
 function _sum_with_words(model::MyPuzzleRecordModel)::Int64
-    subs = Dict("one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5, "six" => 6, "seven" => 7, "eight" => 8, "nine" => 9)
+    numbers_dictionary = Dict("one" => 1, "two" => 2, "three" => 3, "four" => 4, "five" => 5, "six" => 6, "seven" => 7, "eight" => 8, "nine" => 9)
     words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
     value = 0
@@ -55,12 +55,12 @@ function _sum_with_words(model::MyPuzzleRecordModel)::Int64
         catch
             for j ∈ eachindex(words) # traverse array of spelled numbers
                 if startswith(model.record[i:end], words[j])
-                    append!(numbers, subs[words[j]]) # use array element as key for subs dictionary
+                    append!(numbers, numbers_dictionary[words[j]]) # use array element as key for numbers_dictionary
                 end
             end
         end
     end
-    value += numbers[1]*10 + numbers[end]
+    value += numbers[1]*10 + numbers[end] # compute two-digit integer
     return value
 end
 
@@ -72,9 +72,9 @@ end
 
 This function takes a Dictionary as an argument, with the key as the line number in the file and the value as a
 MyPuzzleRecordModel instance holding the encoded line of text. A Tuple with two elements is returned. The
-two-digit integer from each encoded line of text is added to the total. The total (sum of all two-digit integers)
-is the first element of the Tuple. The second element of the Tuple is a Dictionary of type Dict{Int64, Int64}, with
-the key as the line number of the encoded text and the value as the two-digit integer computed from this line of text.
+two-digit integer from each encoded line of text is added to the total. The total is the first element of the Tuple.
+The second element of the Tuple is a Dictionary of type Dict{Int64, Int64}, with the key as the line number of the
+encoded text and the value as the two-digit integer computed from this line of text.
 """
 function decode_part_1(models::Dict{Int64, MyPuzzleRecordModel})::Tuple{Int64, Dict{Int64, Int64}}
     
@@ -85,7 +85,7 @@ function decode_part_1(models::Dict{Int64, MyPuzzleRecordModel})::Tuple{Int64, D
     for (key, value) ∈ models
         first = _first_digit(value)
         last = _last_digit(value)
-        total += first + last
+        total += first + last # compute two-digit integer
         codes[key] = first + last
     end
     
@@ -98,9 +98,9 @@ end
 
 This function takes a Dictionary as an argument, with the key as the line number in the file and the value as a
 MyPuzzleRecordModel instance holding the encoded line of text. A Tuple with two elements is returned. The
-two-digit integer from each encoded line of text is added to the total. The total (sum of all two-digit integers)
-is the first element of the Tuple. The second element of the Tuple is a Dictionary of type Dict{Int64, Int64}, with
-the key as the line number of the encoded text and the value as the two-digit integer computed from this line of text.
+two-digit integer from each encoded line of text is added to the total. The total is the first element of the Tuple.
+The second element of the Tuple is a Dictionary of type Dict{Int64, Int64}, with the key as the line number of the
+encoded text and the value as the two-digit integer computed from this line of text.
 """
 function decode_part_2(models::Dict{Int64, MyPuzzleRecordModel})::Tuple{Int64, Dict{Int64, Int64}}
      
