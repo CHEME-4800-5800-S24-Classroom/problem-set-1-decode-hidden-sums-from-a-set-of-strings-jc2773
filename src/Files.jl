@@ -4,7 +4,7 @@
     puzzleparse(filename::String) -> Dict{Int64, MyPuzzleRecordModel}
 
 This function creates and returns a Dictionary, with the key as the line number in the file and the value as a
-MyPuzzleRecordModel instance holding the encoded line of text. It takes one argument, a file name/file path string.
+MyPuzzleRecordModel instance holding the encoded line of text. It takes one argument, a file name/file path String.
 """
 function puzzleparse(filename::String)::Dict{Int64, MyPuzzleRecordModel}
     
